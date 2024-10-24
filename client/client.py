@@ -18,7 +18,7 @@ class TokApiClient(object):
                 'https': proxy
             })
 
-    def execute(self, method: str, path: str, params: dict = None, headers: dict = None, body_data: dict = None):
+    def execute(self, method: str, path: str, params: dict = None, headers: dict = None, body_data: dict = None, files: dict = None):
         if headers is None:
             headers = {}
 
@@ -28,4 +28,5 @@ class TokApiClient(object):
                                         method=method,
                                         params=params,
                                         headers=headers,
-                                        json=body_data)
+                                        json=body_data,
+                                        files=files)
