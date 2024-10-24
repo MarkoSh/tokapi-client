@@ -1037,6 +1037,22 @@ class TokApi(object):
 
         return self.http_client.execute('POST', f'/v1/user/{user_id}/profile', body_data=body, headers=headers)
 
+    def upload_video(self, files: dict, device_config: str, cookie: str, country_code: str, proxy: str) -> Response:
+        """
+        :param device_config: JSON string with device configuration
+        :param cookie: cookie string
+        :param proxy: http, https, socks4 or socks5 proxy
+        :return: Response object
+        """
+
+        headers = {
+            'x-device': device_config,
+            'x-cookie': cookie,
+            'x-proxy': proxy
+        }
+
+        return self.http_client.execute('POST', '/v1/post/create?region={}'.format( country_code ), files=files, headers=headers)
+
     def update_username(self, user_id: str, username: str, device_config: str, cookie: str, proxy: str) -> Response:
         """
         :param user_id: user id
